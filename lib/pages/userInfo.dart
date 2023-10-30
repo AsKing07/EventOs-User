@@ -86,7 +86,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ClipRRect(
                 borderRadius: BorderRadius.circular(15),
                 child: InkWell(
@@ -111,10 +111,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               !widget.isGmail
                   ? TextField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.person),
                         hintText: 'Entrez votre nom complet',
                       ),
@@ -123,7 +123,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       maxLines: 1,
                     )
                   : Container(),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () async {
                   if (!isOutside && !isBenin) {
@@ -154,11 +154,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
+                  foregroundColor: AppColors.primary,
+                  backgroundColor: AppColors.secondary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  primary: AppColors.secondary,
-                  onPrimary: AppColors.primary,
                 ),
                 child: const Text(
                   "Suivant",

@@ -1,6 +1,11 @@
-# flutter_project
+# EventOs User flutter_project
+EventOs User
+Event Booking App User Version. Booking pass for Event using KKiapay api and get your Pass by Email and inside the app. 
 
-A new Flutter project.
+EventOs Partenaire for creating Project is available in my repository.
+
+
+Make with Firebase
 
 ## Getting Started
 
