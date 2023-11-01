@@ -360,15 +360,6 @@ class _HomePageState extends State<HomePage>
             ? CustomScrollView(
                 slivers: <Widget>[
                   SliverAppBar(
-                    // leading: IconButton(
-                    //   icon: const Icon(
-                    //     Icons.menu,
-                    //     color: Colors.black,
-                    //   ),
-                    //   onPressed: () {
-                    //     _controller.toggle();
-                    //   },
-                    // ),
                     backgroundColor: Colors.white,
                     title: Container(
                       margin: EdgeInsets.only(
@@ -594,22 +585,22 @@ class _HomePageState extends State<HomePage>
                                                 ),
                                                 title: GFListTile(
                                                   title: Text(
-                                                      '${snapshot.data?.docs[index]['eventName']}'),
-                                                  subTitle: Text(
-                                                    'Type: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('dd-MM-yyyy AT hh:mm a').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
+                                                    '${snapshot.data?.docs[index]['eventName']}',
+                                                    style: GoogleFonts.poppins(
+                                                        textStyle: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w800,
+                                                            color: AppColors
+                                                                .primary,
+                                                            fontSize: 20)),
                                                   ),
-                                                  firstButtonTextStyle:
-                                                      TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w800,
-                                                          color:
-                                                              AppColors.primary,
-                                                          fontSize: 20),
-                                                  secondButtonTextStyle:
-                                                      TextStyle(
-                                                          fontSize: 16,
-                                                          fontWeight:
-                                                              FontWeight.w700),
+                                                  subTitle: Text(
+                                                    'Catégorie: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('dd-MM-yyyy AT hh:mm a').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
+                                                    style: const TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w700),
+                                                  ),
                                                 ),
                                                 content: Text(
                                                     "${snapshot.data?.docs[index]['eventDescription']}"),
@@ -906,24 +897,24 @@ class _HomePageState extends State<HomePage>
                                                     ),
                                                     title: GFListTile(
                                                       title: Text(
-                                                          '${snapshot.data?.docs[index]['eventName']}'),
-                                                      subTitle: Text(
-                                                        'Type: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('dd-MM-yyyy AT hh:mm a').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
+                                                        '${snapshot.data?.docs[index]['eventName']}',
+                                                        style: GoogleFonts.poppins(
+                                                            textStyle: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w800,
+                                                                color: AppColors
+                                                                    .primary,
+                                                                fontSize: 20)),
                                                       ),
-                                                      firstButtonTextStyle:
-                                                          TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w800,
-                                                              color: AppColors
-                                                                  .primary,
-                                                              fontSize: 20),
-                                                      secondButtonTextStyle:
-                                                          TextStyle(
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700),
+                                                      subTitle: Text(
+                                                        'Catégorie: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('dd-MM-yyyy AT hh:mm a').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
+                                                        style: const TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w700),
+                                                      ),
                                                     ),
                                                     content: Text(
                                                         "${snapshot.data?.docs[index]['eventDescription']}"),
