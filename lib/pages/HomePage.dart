@@ -4,6 +4,8 @@ import 'dart:io' show Platform;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/Models/category.dart';
+import 'package:flutter_project/Widgets/category_widget.dart';
 import 'package:flutter_project/pages/AboutUs.dart';
 import 'package:flutter_project/pages/EventDetails.dart';
 import 'package:flutter_project/pages/JoinedEvents.dart';
@@ -24,18 +26,18 @@ import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geoflutterfire2/geoflutterfire2.dart';
 // import 'package:flutter_flushbar/flutter_flushbar.dart';
-import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:fancy_drawer/fancy_drawer.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:skeleton_text/skeleton_text.dart';
+// import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:fancy_drawer/fancy_drawer.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:skeleton_text/skeleton_text.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:getwidget/getwidget.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
-  static const kInitialPosition = LatLng(2.4144192, 6.3752311);
+  // static const kInitialPosition = LatLng(2.4144192, 6.3752311);
 }
 
 class _HomePageState extends State<HomePage>
@@ -379,87 +381,87 @@ class _HomePageState extends State<HomePage>
                                 'assets/logo.png',
                                 height: 50,
                               )),
-                              IconButton(
-                                icon: Icon(Icons.tune,
-                                    color: AppColors.primary, size: 25),
-                                color: AppColors.primary,
-                                onPressed: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          shape: const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(10.0))),
-                                          scrollable: true,
-                                          backgroundColor: AppColors.secondary,
-                                          title: const Center(
-                                              child: Text(
-                                            "Filtrer",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 30),
-                                          )),
-                                          content: Container(
-                                              height: height / 5,
-                                              child: Column(
-                                                children: [
-                                                  DropdownButtonFormField(
-                                                    items: categoryList,
-                                                    value: selectedCat,
-                                                    decoration: InputDecoration(
-                                                      labelStyle:
-                                                          GoogleFonts.cabin(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 20,
-                                                              color: AppColors
-                                                                  .primary),
-                                                      labelText:
-                                                          'Categorie d\'évènement',
-                                                    ),
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        selectedCat = value;
-                                                      });
-                                                    },
-                                                  ),
-                                                  Expanded(
-                                                    child: Center(
-                                                      child: ElevatedButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          foregroundColor:
-                                                              AppColors.primary,
-                                                          backgroundColor: AppColors
-                                                              .tertiary, // Couleur du texte du bouton
-                                                          elevation:
-                                                              10, // Élévation du bouton
-                                                        ),
-                                                        child: const Text(
-                                                          "Appliquer les filtres",
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 20,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              )),
-                                        );
-                                      });
-                                },
-                                splashColor: Colors.purple,
-                              )
+                              // IconButton(
+                              //   icon: Icon(Icons.tune,
+                              //       color: AppColors.primary, size: 25),
+                              //   color: AppColors.primary,
+                              //   onPressed: () {
+                              //     showDialog(
+                              //         context: context,
+                              //         builder: (context) {
+                              //           return AlertDialog(
+                              //             shape: const RoundedRectangleBorder(
+                              //                 borderRadius: BorderRadius.all(
+                              //                     Radius.circular(10.0))),
+                              //             scrollable: true,
+                              //             backgroundColor: AppColors.secondary,
+                              //             title: const Center(
+                              //                 child: Text(
+                              //               "Filtrer",
+                              //               style: TextStyle(
+                              //                   color: Colors.white,
+                              //                   fontWeight: FontWeight.w700,
+                              //                   fontSize: 30),
+                              //             )),
+                              //             content: Container(
+                              //                 height: height / 5,
+                              //                 child: Column(
+                              //                   children: [
+                              //                     DropdownButtonFormField(
+                              //                       items: categoryList,
+                              //                       value: selectedCat,
+                              //                       decoration: InputDecoration(
+                              //                         labelStyle:
+                              //                             GoogleFonts.cabin(
+                              //                                 fontWeight:
+                              //                                     FontWeight
+                              //                                         .w600,
+                              //                                 fontSize: 20,
+                              //                                 color: AppColors
+                              //                                     .primary),
+                              //                         labelText:
+                              //                             'Categorie d\'évènement',
+                              //                       ),
+                              //                       onChanged: (value) {
+                              //                         setState(() {
+                              //                           selectedCat = value;
+                              //                         });
+                              //                       },
+                              //                     ),
+                              //                     Expanded(
+                              //                       child: Center(
+                              //                         child: ElevatedButton(
+                              //                           onPressed: () {
+                              //                             Navigator.pop(
+                              //                                 context);
+                              //                           },
+                              //                           style: ElevatedButton
+                              //                               .styleFrom(
+                              //                             foregroundColor:
+                              //                                 AppColors.primary,
+                              //                             backgroundColor: AppColors
+                              //                                 .tertiary, // Couleur du texte du bouton
+                              //                             elevation:
+                              //                                 10, // Élévation du bouton
+                              //                           ),
+                              //                           child: const Text(
+                              //                             "Appliquer les filtres",
+                              //                             style: TextStyle(
+                              //                               fontWeight:
+                              //                                   FontWeight.w600,
+                              //                               fontSize: 20,
+                              //                             ),
+                              //                           ),
+                              //                         ),
+                              //                       ),
+                              //                     )
+                              //                   ],
+                              //                 )),
+                              //           );
+                              //         });
+                              //   },
+                              //   splashColor: Colors.purple,
+                              // )
                             ],
                           ),
                           const SizedBox(height: 20)
@@ -489,6 +491,64 @@ class _HomePageState extends State<HomePage>
                         ),
                       ),
                     ),
+                  ),
+                  SliverList(
+                    delegate: SliverChildListDelegate([
+                      SafeArea(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 32.0),
+                                  child: Text(
+                                    "Quoi de neuf",
+                                    style: TextStyle(
+                                      fontSize: 30.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.secondary,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 24.0),
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      children: [
+                                        for (final category in categories)
+                                          GestureDetector(
+                                              // onTap: () {
+                                              //   setState(() {
+                                              //     selectedCat = category.value!;
+                                              //     print(selectedCat);
+                                              //   });
+                                              // },
+                                              child: CategoryWidget(
+                                            category: category,
+                                            isSelected:
+                                                category.value == selectedCat,
+                                            onCategoryTap: () {
+                                              setState(() {
+                                                selectedCat = category.value!;
+                                                print(selectedCat);
+                                              });
+                                            },
+                                          ))
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ]),
                   ),
                   uid != null
                       ? StreamBuilder(
@@ -521,7 +581,7 @@ class _HomePageState extends State<HomePage>
                                       children: [
                                         Container(
                                           width: width,
-                                          height: height / 2,
+                                          height: height / 3,
                                           child: Center(
                                             child: Padding(
                                               padding:
@@ -676,96 +736,97 @@ class _HomePageState extends State<HomePage>
                                     'assets/logo.png',
                                     height: 50,
                                   )),
-                                  IconButton(
-                                    icon: Icon(Icons.tune,
-                                        color: AppColors.primary, size: 25),
-                                    color: AppColors.primary,
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              shape:
-                                                  const RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  10.0))),
-                                              scrollable: true,
-                                              backgroundColor:
-                                                  AppColors.secondary,
-                                              title: const Center(
-                                                  child: Text(
-                                                "Filtrer",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 30),
-                                              )),
-                                              content: Container(
-                                                  height: height / 5,
-                                                  child: Column(
-                                                    children: [
-                                                      DropdownButtonFormField(
-                                                        items: categoryList,
-                                                        value: selectedCat,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          labelStyle:
-                                                              GoogleFonts.cabin(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize: 20,
-                                                                  color: AppColors
-                                                                      .primary),
-                                                          labelText:
-                                                              'Categorie d\'évènement',
-                                                        ),
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            selectedCat = value;
-                                                          });
-                                                        },
-                                                      ),
-                                                      Expanded(
-                                                        child: Center(
-                                                          child: ElevatedButton(
-                                                            onPressed: () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            },
-                                                            style:
-                                                                ElevatedButton
-                                                                    .styleFrom(
-                                                              foregroundColor:
-                                                                  AppColors
-                                                                      .primary,
-                                                              backgroundColor:
-                                                                  AppColors
-                                                                      .tertiary, // Couleur du texte du bouton
-                                                              elevation:
-                                                                  10, // Élévation du bouton
-                                                            ),
-                                                            child: const Text(
-                                                              "Appliquer les filtres",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize: 20,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  )),
-                                            );
-                                          });
-                                    },
-                                    splashColor: Colors.purple,
-                                  )
+                                  //   IconButton(
+                                  //     icon: Icon(Icons.tune,
+                                  //         color: AppColors.primary, size: 25),
+                                  //     color: AppColors.primary,
+                                  //     onPressed: () {
+                                  //       showDialog(
+                                  //           context: context,
+                                  //           builder: (context) {
+                                  //             return AlertDialog(
+                                  //               shape:
+                                  //                   const RoundedRectangleBorder(
+                                  //                       borderRadius:
+                                  //                           BorderRadius.all(
+                                  //                               Radius.circular(
+                                  //                                   10.0))),
+                                  //               scrollable: true,
+                                  //               backgroundColor:
+                                  //                   AppColors.secondary,
+                                  //               title: const Center(
+                                  //                   child: Text(
+                                  //                 "Filtrer",
+                                  //                 style: TextStyle(
+                                  //                     color: Colors.white,
+                                  //                     fontWeight: FontWeight.w700,
+                                  //                     fontSize: 30),
+                                  //               )),
+                                  //               content: Container(
+                                  //                   height: height / 5,
+                                  //                   child: Column(
+                                  //                     children: [
+                                  //                       DropdownButtonFormField(
+                                  //                         items: categoryList,
+                                  //                         value: selectedCat,
+                                  //                         decoration:
+                                  //                             InputDecoration(
+                                  //                           labelStyle:
+                                  //                               GoogleFonts.cabin(
+                                  //                                   fontWeight:
+                                  //                                       FontWeight
+                                  //                                           .w600,
+                                  //                                   fontSize: 20,
+                                  //                                   color: AppColors
+                                  //                                       .primary),
+                                  //                           labelText:
+                                  //                               'Categorie d\'évènement',
+                                  //                         ),
+                                  //                         onChanged: (value) {
+                                  //                           setState(() {
+                                  //                             selectedCat = value;
+                                  //                           });
+                                  //                         },
+                                  //                       ),
+                                  //                       Expanded(
+                                  //                         child: Center(
+                                  //                           child: ElevatedButton(
+                                  //                             onPressed: () {
+                                  //                               Navigator.pop(
+                                  //                                   context);
+                                  //                             },
+                                  //                             style:
+                                  //                                 ElevatedButton
+                                  //                                     .styleFrom(
+                                  //                               foregroundColor:
+                                  //                                   AppColors
+                                  //                                       .primary,
+                                  //                               backgroundColor:
+                                  //                                   AppColors
+                                  //                                       .tertiary, // Couleur du texte du bouton
+                                  //                               elevation:
+                                  //                                   10, // Élévation du bouton
+                                  //                             ),
+                                  //                             child: const Text(
+                                  //                               "Appliquer les filtres",
+                                  //                               style: TextStyle(
+                                  //                                 fontWeight:
+                                  //                                     FontWeight
+                                  //                                         .w600,
+                                  //                                 fontSize: 20,
+                                  //                               ),
+                                  //                             ),
+                                  //                           ),
+                                  //                         ),
+                                  //                       )
+                                  //                     ],
+                                  //                   )),
+                                  //             );
+                                  //           });
+                                  //     },
+                                  //     splashColor: Colors.purple,
+                                  //   )
+                                  //
                                 ],
                               ),
                               const SizedBox(height: 20)
@@ -796,6 +857,65 @@ class _HomePageState extends State<HomePage>
                             ),
                           ),
                         ),
+                      ),
+                      SliverList(
+                        delegate: SliverChildListDelegate([
+                          SafeArea(
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 16.0),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 32.0),
+                                      child: Text(
+                                        "Quoi de neuf",
+                                        style: TextStyle(
+                                          fontSize: 30.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.secondary,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 24.0),
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Row(
+                                          children: [
+                                            for (final category in categories)
+                                              GestureDetector(
+                                                  // onTap: () {
+                                                  //   setState(() {
+                                                  //     selectedCat = category.value!;
+                                                  //     print(selectedCat);
+                                                  //   });
+                                                  // },
+                                                  child: CategoryWidget(
+                                                category: category,
+                                                isSelected: category.value ==
+                                                    selectedCat,
+                                                onCategoryTap: () {
+                                                  setState(() {
+                                                    selectedCat =
+                                                        category.value!;
+                                                    print(selectedCat);
+                                                  });
+                                                },
+                                              ))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )
+                        ]),
                       ),
                       uid != null
                           ? StreamBuilder(
@@ -828,7 +948,7 @@ class _HomePageState extends State<HomePage>
                                           children: [
                                             Container(
                                               width: width,
-                                              height: height / 2,
+                                              height: height / 3,
                                               child: Center(
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(
