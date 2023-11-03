@@ -35,6 +35,8 @@ import 'package:geocoding/geocoding.dart';
 import 'package:getwidget/getwidget.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
   // static const kInitialPosition = LatLng(2.4144192, 6.3752311);
@@ -55,148 +57,148 @@ class _HomePageState extends State<HomePage>
   String selectedCat = "All Events";
   late User user;
 
-  List<DropdownMenuItem> categoryList = [
-    DropdownMenuItem(
-      value: 'All Events',
-      child: Text(
-        'Tous les évènements',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Appearance/Singing',
-      child: Text(
-        'Apparition/Chant',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Attaraction',
-      child: Text(
-        'Attirance',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Camp, Trip or Retreat',
-      child: Text(
-        'Camp, voyage ou retraite',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Class, Training, or Workshop',
-      child: Text(
-        'Cours, formation ou atelier',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Concert/Performance',
-      child: Text(
-        'Concert/Performance',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Conference',
-      child: Text(
-        'Conférence',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Convention',
-      child: Text(
-        'Convention',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Dinner or Gala',
-      child: Text(
-        'Dinner ou Gala',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Festival or Fair',
-      child: Text(
-        'Festival ou foire',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Game or Competition',
-      child: Text(
-        'Jeu ou Compétition',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Meeting/Networking event',
-      child: Text(
-        'Meeting/réseautage',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Party/Social Gathering',
-      child: Text(
-        'Fête/rassemblement social',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-    DropdownMenuItem(
-      value: 'Other',
-      child: Text(
-        'Autre',
-        style: GoogleFonts.cabin(
-            fontWeight: FontWeight.w800,
-            fontSize: 20,
-            color: AppColors.primary),
-      ),
-    ),
-  ];
+  // List<DropdownMenuItem> categoryList = [
+  //   DropdownMenuItem(
+  //     value: 'All Events',
+  //     child: Text(
+  //       'Tous les évènements',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Appearance/Singing',
+  //     child: Text(
+  //       'Apparition/Chant',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Attaraction',
+  //     child: Text(
+  //       'Attirance',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Camp, Trip or Retreat',
+  //     child: Text(
+  //       'Camp, voyage ou retraite',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Class, Training, or Workshop',
+  //     child: Text(
+  //       'Cours, formation ou atelier',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Concert/Performance',
+  //     child: Text(
+  //       'Concert/Performance',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Conference',
+  //     child: Text(
+  //       'Conférence',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Convention',
+  //     child: Text(
+  //       'Convention',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Dinner or Gala',
+  //     child: Text(
+  //       'Dinner ou Gala',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Festival or Fair',
+  //     child: Text(
+  //       'Festival ou foire',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Game or Competition',
+  //     child: Text(
+  //       'Jeu ou Compétition',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Meeting/Networking event',
+  //     child: Text(
+  //       'Meeting/réseautage',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Party/Social Gathering',
+  //     child: Text(
+  //       'Fête/rassemblement social',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  //   DropdownMenuItem(
+  //     value: 'Other',
+  //     child: Text(
+  //       'Autre',
+  //       style: GoogleFonts.cabin(
+  //           fontWeight: FontWeight.w800,
+  //           fontSize: 20,
+  //           color: AppColors.primary),
+  //     ),
+  //   ),
+  // ];
 
   void getUser() async {
     uid = await getCurrentUid();
@@ -292,7 +294,7 @@ class _HomePageState extends State<HomePage>
                 activeColor: Colors.orange),
             BottomNavyBarItem(
                 icon: const Icon(Icons.local_movies_rounded),
-                title: const Text('J\'ai rejoins'),
+                title: const Text('Mes PASS'),
                 activeColor: Colors.pink),
           ],
         ),
@@ -358,361 +360,9 @@ class _HomePageState extends State<HomePage>
             ],
           ),
         ),
-        body: _selectedIndex == 0
-            ? CustomScrollView(
-                slivers: <Widget>[
-                  SliverAppBar(
-                    backgroundColor: Colors.white,
-                    title: Container(
-                      margin: EdgeInsets.only(
-                          left: width / 50,
-                          top: height / 15,
-                          right: width / 50,
-                          bottom: height / 30),
-                      width: width,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Expanded(
-                                  child: Image.asset(
-                                'assets/logo.png',
-                                height: 50,
-                              )),
-                              // IconButton(
-                              //   icon: Icon(Icons.tune,
-                              //       color: AppColors.primary, size: 25),
-                              //   color: AppColors.primary,
-                              //   onPressed: () {
-                              //     showDialog(
-                              //         context: context,
-                              //         builder: (context) {
-                              //           return AlertDialog(
-                              //             shape: const RoundedRectangleBorder(
-                              //                 borderRadius: BorderRadius.all(
-                              //                     Radius.circular(10.0))),
-                              //             scrollable: true,
-                              //             backgroundColor: AppColors.secondary,
-                              //             title: const Center(
-                              //                 child: Text(
-                              //               "Filtrer",
-                              //               style: TextStyle(
-                              //                   color: Colors.white,
-                              //                   fontWeight: FontWeight.w700,
-                              //                   fontSize: 30),
-                              //             )),
-                              //             content: Container(
-                              //                 height: height / 5,
-                              //                 child: Column(
-                              //                   children: [
-                              //                     DropdownButtonFormField(
-                              //                       items: categoryList,
-                              //                       value: selectedCat,
-                              //                       decoration: InputDecoration(
-                              //                         labelStyle:
-                              //                             GoogleFonts.cabin(
-                              //                                 fontWeight:
-                              //                                     FontWeight
-                              //                                         .w600,
-                              //                                 fontSize: 20,
-                              //                                 color: AppColors
-                              //                                     .primary),
-                              //                         labelText:
-                              //                             'Categorie d\'évènement',
-                              //                       ),
-                              //                       onChanged: (value) {
-                              //                         setState(() {
-                              //                           selectedCat = value;
-                              //                         });
-                              //                       },
-                              //                     ),
-                              //                     Expanded(
-                              //                       child: Center(
-                              //                         child: ElevatedButton(
-                              //                           onPressed: () {
-                              //                             Navigator.pop(
-                              //                                 context);
-                              //                           },
-                              //                           style: ElevatedButton
-                              //                               .styleFrom(
-                              //                             foregroundColor:
-                              //                                 AppColors.primary,
-                              //                             backgroundColor: AppColors
-                              //                                 .tertiary, // Couleur du texte du bouton
-                              //                             elevation:
-                              //                                 10, // Élévation du bouton
-                              //                           ),
-                              //                           child: const Text(
-                              //                             "Appliquer les filtres",
-                              //                             style: TextStyle(
-                              //                               fontWeight:
-                              //                                   FontWeight.w600,
-                              //                               fontSize: 20,
-                              //                             ),
-                              //                           ),
-                              //                         ),
-                              //                       ),
-                              //                     )
-                              //                   ],
-                              //                 )),
-                              //           );
-                              //         });
-                              //   },
-                              //   splashColor: Colors.purple,
-                              // )
-                            ],
-                          ),
-                          const SizedBox(height: 20)
-                        ],
-                      ),
-                    ),
-                    expandedHeight: 110,
-                    pinned: true,
-                    floating: true,
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: Container(
-                        padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).padding.top + 70),
-                        height: MediaQuery.of(context).padding.top + 110,
-                        child: const Padding(
-                          padding: EdgeInsets.only(right: 16.0, bottom: 10.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              "Evenements en Présentielle",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16,
-                                  color: Colors.redAccent),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SliverList(
-                    delegate: SliverChildListDelegate([
-                      SafeArea(
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 32.0),
-                                  child: Text(
-                                    "Quoi de neuf",
-                                    style: TextStyle(
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.secondary,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 24.0),
-                                  child: SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      children: [
-                                        for (final category in categories)
-                                          GestureDetector(
-                                              // onTap: () {
-                                              //   setState(() {
-                                              //     selectedCat = category.value!;
-                                              //     print(selectedCat);
-                                              //   });
-                                              // },
-                                              child: CategoryWidget(
-                                            category: category,
-                                            isSelected:
-                                                category.value == selectedCat,
-                                            onCategoryTap: () {
-                                              setState(() {
-                                                selectedCat = category.value!;
-                                                print(selectedCat);
-                                              });
-                                            },
-                                          ))
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    ]),
-                  ),
-                  uid != null
-                      ? StreamBuilder(
-                          stream: selectedCat == null ||
-                                  selectedCat == 'All Events'
-                              ? FirebaseFirestore.instance
-                                  .collection('events')
-                                  .where('eventLive', isEqualTo: true)
-                                  .snapshots()
-                              : FirebaseFirestore.instance
-                                  .collection('events')
-                                  .where('eventLive', isEqualTo: true)
-                                  .where('eventCategory',
-                                      isEqualTo: selectedCat)
-                                  .snapshots(),
-                          builder: (BuildContext context, snapshot) {
-                            if (snapshot.connectionState ==
-                                    ConnectionState.waiting &&
-                                snapshot.data == null) {
-                              return SliverFillRemaining(
-                                  child: Center(
-                                      child: SpinKitChasingDots(
-                                          color: AppColors.secondary,
-                                          size: 60)));
-                            } else if (snapshot.hasData) {
-                              if (snapshot.data!.docs.isEmpty) {
-                                return SliverFillRemaining(
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          width: width,
-                                          height: height / 3,
-                                          child: Center(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(16.0),
-                                              child: SvgPicture.asset(
-                                                  'assets/event.svg',
-                                                  semanticsLabel:
-                                                      'Event Illustration'),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(height: height / 20),
-                                        const Text("Pas d'évenement trouvé :(")
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              } else {
-                                return SliverList(
-                                    delegate: SliverChildBuilderDelegate(
-                                  (context, index) {
-                                    return Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 20),
-                                      child: Stack(
-                                        children: [
-                                          Center(
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                Navigator.push(context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                                  return DetailPage(
-                                                      0,
-                                                      snapshot.data?.docs[index]
-                                                          as DocumentSnapshot<
-                                                              Object?>,
-                                                      uid);
-                                                }));
-                                              },
-                                              child: GFCard(
-                                                showImage: true,
-                                                shape:
-                                                    const RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(12)),
-                                                ),
-                                                boxFit: BoxFit.cover,
-                                                image: Image.network(
-                                                  '${snapshot.data?.docs[index]['eventBanner']}',
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.6,
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.9,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                                title: GFListTile(
-                                                  title: Text(
-                                                    '${snapshot.data?.docs[index]['eventName']}',
-                                                    style: GoogleFonts.poppins(
-                                                        textStyle: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w800,
-                                                            color: AppColors
-                                                                .primary,
-                                                            fontSize: 20)),
-                                                  ),
-                                                  subTitle: Text(
-                                                    'Catégorie: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('dd-MM-yyyy AT hh:mm a').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
-                                                    style: const TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w700),
-                                                  ),
-                                                ),
-                                                content: Text(
-                                                    "${snapshot.data?.docs[index]['eventDescription']}"),
-                                                buttonBar: GFButtonBar(
-                                                  children: <Widget>[
-                                                    GFButton(
-                                                      onPressed: () {
-                                                        Navigator.push(context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) {
-                                                          return DetailPage(
-                                                              0,
-                                                              snapshot.data
-                                                                          ?.docs[
-                                                                      index]
-                                                                  as DocumentSnapshot<
-                                                                      Object?>,
-                                                              uid);
-                                                        }));
-                                                      },
-                                                      text: 'Voir les détails',
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  childCount: snapshot.data?.docs.length,
-                                ));
-                              }
-                            } else {
-                              return SliverFillRemaining(
-                                  child: Center(
-                                      child: SpinKitChasingDots(
-                                          color: AppColors.secondary,
-                                          size: 60)));
-                            }
-                          })
-                      : SliverFillRemaining(
-                          child: Center(
-                              child: SpinKitChasingDots(
-                                  color: AppColors.secondary, size: 60)))
-                ],
-              )
-
-            //Evènements en ligne
-            : _selectedIndex == 1
+        body:
+            //Evenements en présentiel
+            _selectedIndex == 0
                 ? CustomScrollView(
                     slivers: <Widget>[
                       SliverAppBar(
@@ -736,97 +386,87 @@ class _HomePageState extends State<HomePage>
                                     'assets/logo.png',
                                     height: 50,
                                   )),
-                                  //   IconButton(
-                                  //     icon: Icon(Icons.tune,
-                                  //         color: AppColors.primary, size: 25),
-                                  //     color: AppColors.primary,
-                                  //     onPressed: () {
-                                  //       showDialog(
-                                  //           context: context,
-                                  //           builder: (context) {
-                                  //             return AlertDialog(
-                                  //               shape:
-                                  //                   const RoundedRectangleBorder(
-                                  //                       borderRadius:
-                                  //                           BorderRadius.all(
-                                  //                               Radius.circular(
-                                  //                                   10.0))),
-                                  //               scrollable: true,
-                                  //               backgroundColor:
-                                  //                   AppColors.secondary,
-                                  //               title: const Center(
-                                  //                   child: Text(
-                                  //                 "Filtrer",
-                                  //                 style: TextStyle(
-                                  //                     color: Colors.white,
-                                  //                     fontWeight: FontWeight.w700,
-                                  //                     fontSize: 30),
-                                  //               )),
-                                  //               content: Container(
-                                  //                   height: height / 5,
-                                  //                   child: Column(
-                                  //                     children: [
-                                  //                       DropdownButtonFormField(
-                                  //                         items: categoryList,
-                                  //                         value: selectedCat,
-                                  //                         decoration:
-                                  //                             InputDecoration(
-                                  //                           labelStyle:
-                                  //                               GoogleFonts.cabin(
-                                  //                                   fontWeight:
-                                  //                                       FontWeight
-                                  //                                           .w600,
-                                  //                                   fontSize: 20,
-                                  //                                   color: AppColors
-                                  //                                       .primary),
-                                  //                           labelText:
-                                  //                               'Categorie d\'évènement',
-                                  //                         ),
-                                  //                         onChanged: (value) {
-                                  //                           setState(() {
-                                  //                             selectedCat = value;
-                                  //                           });
-                                  //                         },
-                                  //                       ),
-                                  //                       Expanded(
-                                  //                         child: Center(
-                                  //                           child: ElevatedButton(
-                                  //                             onPressed: () {
-                                  //                               Navigator.pop(
-                                  //                                   context);
-                                  //                             },
-                                  //                             style:
-                                  //                                 ElevatedButton
-                                  //                                     .styleFrom(
-                                  //                               foregroundColor:
-                                  //                                   AppColors
-                                  //                                       .primary,
-                                  //                               backgroundColor:
-                                  //                                   AppColors
-                                  //                                       .tertiary, // Couleur du texte du bouton
-                                  //                               elevation:
-                                  //                                   10, // Élévation du bouton
-                                  //                             ),
-                                  //                             child: const Text(
-                                  //                               "Appliquer les filtres",
-                                  //                               style: TextStyle(
+                                  // IconButton(
+                                  //   icon: Icon(Icons.tune,
+                                  //       color: AppColors.primary, size: 25),
+                                  //   color: AppColors.primary,
+                                  //   onPressed: () {
+                                  //     showDialog(
+                                  //         context: context,
+                                  //         builder: (context) {
+                                  //           return AlertDialog(
+                                  //             shape: const RoundedRectangleBorder(
+                                  //                 borderRadius: BorderRadius.all(
+                                  //                     Radius.circular(10.0))),
+                                  //             scrollable: true,
+                                  //             backgroundColor: AppColors.secondary,
+                                  //             title: const Center(
+                                  //                 child: Text(
+                                  //               "Filtrer",
+                                  //               style: TextStyle(
+                                  //                   color: Colors.white,
+                                  //                   fontWeight: FontWeight.w700,
+                                  //                   fontSize: 30),
+                                  //             )),
+                                  //             content: Container(
+                                  //                 height: height / 5,
+                                  //                 child: Column(
+                                  //                   children: [
+                                  //                     DropdownButtonFormField(
+                                  //                       items: categoryList,
+                                  //                       value: selectedCat,
+                                  //                       decoration: InputDecoration(
+                                  //                         labelStyle:
+                                  //                             GoogleFonts.cabin(
                                   //                                 fontWeight:
                                   //                                     FontWeight
                                   //                                         .w600,
                                   //                                 fontSize: 20,
-                                  //                               ),
+                                  //                                 color: AppColors
+                                  //                                     .primary),
+                                  //                         labelText:
+                                  //                             'Categorie d\'évènement',
+                                  //                       ),
+                                  //                       onChanged: (value) {
+                                  //                         setState(() {
+                                  //                           selectedCat = value;
+                                  //                         });
+                                  //                       },
+                                  //                     ),
+                                  //                     Expanded(
+                                  //                       child: Center(
+                                  //                         child: ElevatedButton(
+                                  //                           onPressed: () {
+                                  //                             Navigator.pop(
+                                  //                                 context);
+                                  //                           },
+                                  //                           style: ElevatedButton
+                                  //                               .styleFrom(
+                                  //                             foregroundColor:
+                                  //                                 AppColors.primary,
+                                  //                             backgroundColor: AppColors
+                                  //                                 .tertiary, // Couleur du texte du bouton
+                                  //                             elevation:
+                                  //                                 10, // Élévation du bouton
+                                  //                           ),
+                                  //                           child: const Text(
+                                  //                             "Appliquer les filtres",
+                                  //                             style: TextStyle(
+                                  //                               fontWeight:
+                                  //                                   FontWeight.w600,
+                                  //                               fontSize: 20,
                                   //                             ),
                                   //                           ),
                                   //                         ),
-                                  //                       )
-                                  //                     ],
-                                  //                   )),
-                                  //             );
-                                  //           });
-                                  //     },
-                                  //     splashColor: Colors.purple,
-                                  //   )
-                                  //
+                                  //                       ),
+                                  //                     )
+                                  //                   ],
+                                  //                 )),
+                                  //           );
+                                  //         });
+                                  //   },
+                                  //   splashColor: Colors.purple,
+                                  // )
                                 ],
                               ),
                               const SizedBox(height: 20)
@@ -847,17 +487,19 @@ class _HomePageState extends State<HomePage>
                               child: Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  "Evenements en ligne",
+                                  "Evenements en Présentielle",
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16,
-                                      color: Colors.blueAccent),
+                                      color: Colors.redAccent),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
+
+                      //Caroussel des catégories
                       SliverList(
                         delegate: SliverChildListDelegate([
                           SafeArea(
@@ -868,7 +510,7 @@ class _HomePageState extends State<HomePage>
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           horizontal: 32.0),
                                       child: Text(
                                         "Quoi de neuf",
@@ -922,16 +564,16 @@ class _HomePageState extends State<HomePage>
                               stream: selectedCat == null ||
                                       selectedCat == 'All Events'
                                   ? FirebaseFirestore.instance
-                                      .collection('OnlineEvents')
+                                      .collection('events')
                                       .where('eventLive', isEqualTo: true)
                                       .snapshots()
                                   : FirebaseFirestore.instance
-                                      .collection('OnlineEvents')
+                                      .collection('events')
                                       .where('eventLive', isEqualTo: true)
                                       .where('eventCategory',
                                           isEqualTo: selectedCat)
                                       .snapshots(),
-                              builder: (BuildContext context1, snapshot) {
+                              builder: (BuildContext context, snapshot) {
                                 if (snapshot.connectionState ==
                                         ConnectionState.waiting &&
                                     snapshot.data == null) {
@@ -983,7 +625,7 @@ class _HomePageState extends State<HomePage>
                                                         MaterialPageRoute(
                                                             builder: (context) {
                                                       return DetailPage(
-                                                          1,
+                                                          0,
                                                           snapshot.data
                                                                   ?.docs[index]
                                                               as DocumentSnapshot<
@@ -1014,6 +656,46 @@ class _HomePageState extends State<HomePage>
                                                                   .width *
                                                               0.9,
                                                       fit: BoxFit.cover,
+                                                      loadingBuilder: (BuildContext
+                                                              context,
+                                                          Widget child,
+                                                          ImageChunkEvent?
+                                                              loadingProgress) {
+                                                        if (loadingProgress ==
+                                                            null) {
+                                                          return child;
+                                                        } else {
+                                                          return Center(
+                                                              child:
+                                                                  GFProgressBar(
+                                                            percentage: loadingProgress
+                                                                        .expectedTotalBytes !=
+                                                                    null
+                                                                ? loadingProgress
+                                                                        .cumulativeBytesLoaded /
+                                                                    loadingProgress
+                                                                        .expectedTotalBytes!
+                                                                : 100,
+                                                            lineHeight: 20,
+                                                            backgroundColor:
+                                                                Colors.black26,
+                                                            progressBarColor:
+                                                                GFColors
+                                                                    .SUCCESS,
+                                                          )
+                                                              //     CircularProgressIndicator(
+                                                              //   value: loadingProgress
+                                                              //               .expectedTotalBytes !=
+                                                              //           null
+                                                              //       ? loadingProgress
+                                                              //               .cumulativeBytesLoaded /
+                                                              //           loadingProgress
+                                                              //               .expectedTotalBytes!
+                                                              //       : null,
+                                                              // ),
+                                                              );
+                                                        }
+                                                      },
                                                     ),
                                                     title: GFListTile(
                                                       title: Text(
@@ -1086,8 +768,443 @@ class _HomePageState extends State<HomePage>
                                       color: AppColors.secondary, size: 60)))
                     ],
                   )
-                : _selectedIndex == 2
-                    ? SearchPage()
-                    : JoinedEvents(uid));
+
+                //Evènements en ligne
+                : _selectedIndex == 1
+                    ? CustomScrollView(
+                        slivers: <Widget>[
+                          SliverAppBar(
+                            backgroundColor: Colors.white,
+                            title: Container(
+                              margin: EdgeInsets.only(
+                                  left: width / 50,
+                                  top: height / 15,
+                                  right: width / 50,
+                                  bottom: height / 30),
+                              width: width,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Expanded(
+                                          child: Image.asset(
+                                        'assets/logo.png',
+                                        height: 50,
+                                      )),
+                                      //   IconButton(
+                                      //     icon: Icon(Icons.tune,
+                                      //         color: AppColors.primary, size: 25),
+                                      //     color: AppColors.primary,
+                                      //     onPressed: () {
+                                      //       showDialog(
+                                      //           context: context,
+                                      //           builder: (context) {
+                                      //             return AlertDialog(
+                                      //               shape:
+                                      //                   const RoundedRectangleBorder(
+                                      //                       borderRadius:
+                                      //                           BorderRadius.all(
+                                      //                               Radius.circular(
+                                      //                                   10.0))),
+                                      //               scrollable: true,
+                                      //               backgroundColor:
+                                      //                   AppColors.secondary,
+                                      //               title: const Center(
+                                      //                   child: Text(
+                                      //                 "Filtrer",
+                                      //                 style: TextStyle(
+                                      //                     color: Colors.white,
+                                      //                     fontWeight: FontWeight.w700,
+                                      //                     fontSize: 30),
+                                      //               )),
+                                      //               content: Container(
+                                      //                   height: height / 5,
+                                      //                   child: Column(
+                                      //                     children: [
+                                      //                       DropdownButtonFormField(
+                                      //                         items: categoryList,
+                                      //                         value: selectedCat,
+                                      //                         decoration:
+                                      //                             InputDecoration(
+                                      //                           labelStyle:
+                                      //                               GoogleFonts.cabin(
+                                      //                                   fontWeight:
+                                      //                                       FontWeight
+                                      //                                           .w600,
+                                      //                                   fontSize: 20,
+                                      //                                   color: AppColors
+                                      //                                       .primary),
+                                      //                           labelText:
+                                      //                               'Categorie d\'évènement',
+                                      //                         ),
+                                      //                         onChanged: (value) {
+                                      //                           setState(() {
+                                      //                             selectedCat = value;
+                                      //                           });
+                                      //                         },
+                                      //                       ),
+                                      //                       Expanded(
+                                      //                         child: Center(
+                                      //                           child: ElevatedButton(
+                                      //                             onPressed: () {
+                                      //                               Navigator.pop(
+                                      //                                   context);
+                                      //                             },
+                                      //                             style:
+                                      //                                 ElevatedButton
+                                      //                                     .styleFrom(
+                                      //                               foregroundColor:
+                                      //                                   AppColors
+                                      //                                       .primary,
+                                      //                               backgroundColor:
+                                      //                                   AppColors
+                                      //                                       .tertiary, // Couleur du texte du bouton
+                                      //                               elevation:
+                                      //                                   10, // Élévation du bouton
+                                      //                             ),
+                                      //                             child: const Text(
+                                      //                               "Appliquer les filtres",
+                                      //                               style: TextStyle(
+                                      //                                 fontWeight:
+                                      //                                     FontWeight
+                                      //                                         .w600,
+                                      //                                 fontSize: 20,
+                                      //                               ),
+                                      //                             ),
+                                      //                           ),
+                                      //                         ),
+                                      //                       )
+                                      //                     ],
+                                      //                   )),
+                                      //             );
+                                      //           });
+                                      //     },
+                                      //     splashColor: Colors.purple,
+                                      //   )
+                                      //
+                                    ],
+                                  ),
+                                  const SizedBox(height: 20)
+                                ],
+                              ),
+                            ),
+                            expandedHeight: 110,
+                            pinned: true,
+                            floating: true,
+                            flexibleSpace: FlexibleSpaceBar(
+                              background: Container(
+                                padding: EdgeInsets.only(
+                                    top: MediaQuery.of(context).padding.top +
+                                        70),
+                                height:
+                                    MediaQuery.of(context).padding.top + 110,
+                                child: const Padding(
+                                  padding: EdgeInsets.only(
+                                      right: 16.0, bottom: 10.0),
+                                  child: Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      "Evenements en ligne",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16,
+                                          color: Colors.blueAccent),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SliverList(
+                            delegate: SliverChildListDelegate([
+                              SafeArea(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 16.0),
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 32.0),
+                                          child: Text(
+                                            "Quoi de neuf",
+                                            style: TextStyle(
+                                              fontSize: 30.0,
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.secondary,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 24.0),
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Row(
+                                              children: [
+                                                for (final category
+                                                    in categories)
+                                                  GestureDetector(
+                                                      // onTap: () {
+                                                      //   setState(() {
+                                                      //     selectedCat = category.value!;
+                                                      //     print(selectedCat);
+                                                      //   });
+                                                      // },
+                                                      child: CategoryWidget(
+                                                    category: category,
+                                                    isSelected:
+                                                        category.value ==
+                                                            selectedCat,
+                                                    onCategoryTap: () {
+                                                      setState(() {
+                                                        selectedCat =
+                                                            category.value!;
+                                                        print(selectedCat);
+                                                      });
+                                                    },
+                                                  ))
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ]),
+                          ),
+                          uid != null
+                              ? StreamBuilder(
+                                  stream: selectedCat == null ||
+                                          selectedCat == 'All Events'
+                                      ? FirebaseFirestore.instance
+                                          .collection('OnlineEvents')
+                                          .where('eventLive', isEqualTo: true)
+                                          .snapshots()
+                                      : FirebaseFirestore.instance
+                                          .collection('OnlineEvents')
+                                          .where('eventLive', isEqualTo: true)
+                                          .where('eventCategory',
+                                              isEqualTo: selectedCat)
+                                          .snapshots(),
+                                  builder: (BuildContext context1, snapshot) {
+                                    if (snapshot.connectionState ==
+                                            ConnectionState.waiting &&
+                                        snapshot.data == null) {
+                                      return SliverFillRemaining(
+                                          child: Center(
+                                              child: SpinKitChasingDots(
+                                                  color: AppColors.secondary,
+                                                  size: 60)));
+                                    } else if (snapshot.hasData) {
+                                      if (snapshot.data!.docs.isEmpty) {
+                                        return SliverFillRemaining(
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  width: width,
+                                                  height: height / 3,
+                                                  child: Center(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              16.0),
+                                                      child: SvgPicture.asset(
+                                                          'assets/event.svg',
+                                                          semanticsLabel:
+                                                              'Event Illustration'),
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(height: height / 20),
+                                                const Text(
+                                                    "Pas d'évenement trouvé :(")
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        return SliverList(
+                                            delegate:
+                                                SliverChildBuilderDelegate(
+                                          (context, index) {
+                                            return Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 20),
+                                              child: Stack(
+                                                children: [
+                                                  Center(
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        Navigator.push(context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) {
+                                                          return DetailPage(
+                                                              1,
+                                                              snapshot.data
+                                                                          ?.docs[
+                                                                      index]
+                                                                  as DocumentSnapshot<
+                                                                      Object?>,
+                                                              uid);
+                                                        }));
+                                                      },
+                                                      child: GFCard(
+                                                        showImage: true,
+                                                        shape:
+                                                            const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          12)),
+                                                        ),
+                                                        boxFit: BoxFit.cover,
+                                                        image: Image.network(
+                                                          '${snapshot.data?.docs[index]['eventBanner']}',
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.6,
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.9,
+                                                          fit: BoxFit.cover,
+                                                          loadingBuilder:
+                                                              (BuildContext
+                                                                      context,
+                                                                  Widget child,
+                                                                  ImageChunkEvent?
+                                                                      loadingProgress) {
+                                                            if (loadingProgress ==
+                                                                null) {
+                                                              return child;
+                                                            } else {
+                                                              return Center(
+                                                                  child:
+                                                                      GFProgressBar(
+                                                                percentage: loadingProgress
+                                                                            .expectedTotalBytes !=
+                                                                        null
+                                                                    ? loadingProgress
+                                                                            .cumulativeBytesLoaded /
+                                                                        loadingProgress
+                                                                            .expectedTotalBytes!
+                                                                    : 100,
+                                                                lineHeight: 20,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .black26,
+                                                                progressBarColor:
+                                                                    GFColors
+                                                                        .SUCCESS,
+                                                              )
+
+                                                                  //     CircularProgressIndicator(
+                                                                  //   value: loadingProgress
+                                                                  //               .expectedTotalBytes !=
+                                                                  //           null
+                                                                  //       ? loadingProgress
+                                                                  //               .cumulativeBytesLoaded /
+                                                                  //           loadingProgress
+                                                                  //               .expectedTotalBytes!
+                                                                  //       : null,
+                                                                  // ),
+                                                                  );
+                                                            }
+                                                          },
+                                                        ),
+                                                        title: GFListTile(
+                                                          title: Text(
+                                                            '${snapshot.data?.docs[index]['eventName']}',
+                                                            style: GoogleFonts.poppins(
+                                                                textStyle: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w800,
+                                                                    color: AppColors
+                                                                        .primary,
+                                                                    fontSize:
+                                                                        20)),
+                                                          ),
+                                                          subTitle: Text(
+                                                            'Catégorie: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('dd-MM-yyyy AT hh:mm a').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
+                                                            style: const TextStyle(
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700),
+                                                          ),
+                                                        ),
+                                                        content: Text(
+                                                            "${snapshot.data?.docs[index]['eventDescription']}"),
+                                                        buttonBar: GFButtonBar(
+                                                          children: <Widget>[
+                                                            GFButton(
+                                                              onPressed: () {
+                                                                Navigator.push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) {
+                                                                  return DetailPage(
+                                                                      0,
+                                                                      snapshot.data
+                                                                              ?.docs[index]
+                                                                          as DocumentSnapshot<
+                                                                              Object?>,
+                                                                      uid);
+                                                                }));
+                                                              },
+                                                              text:
+                                                                  'Voir les détails',
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                          childCount:
+                                              snapshot.data?.docs.length,
+                                        ));
+                                      }
+                                    } else {
+                                      return SliverFillRemaining(
+                                          child: Center(
+                                              child: SpinKitChasingDots(
+                                                  color: AppColors.secondary,
+                                                  size: 60)));
+                                    }
+                                  })
+                              : SliverFillRemaining(
+                                  child: Center(
+                                      child: SpinKitChasingDots(
+                                          color: AppColors.secondary,
+                                          size: 60)))
+                        ],
+                      )
+
+                    //Page de recherche
+                    : _selectedIndex == 2
+                        ? SearchPage()
+
+                        //Page des évènements rejoins
+                        : JoinedEvents(uid));
   }
 }
