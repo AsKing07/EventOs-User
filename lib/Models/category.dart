@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Category {
   final int? categoryId;
@@ -21,12 +22,12 @@ final concertCategory = Category(
   categoryId: 1,
   name: "Concert",
   value: "Concert/Performance",
-  icon: Icons.music_note,
+  icon: Icons.speaker_group_sharp,
 );
 
 final musicCategory = Category(
   categoryId: 2,
-  name: "Prestation",
+  name: "Prestation/Chant",
   value: "Appearance/Singing",
   icon: Icons.music_note,
 );
@@ -35,63 +36,59 @@ final meetUpCategory = Category(
   categoryId: 3,
   name: "Rencontre",
   value: 'Attaraction',
-  icon: Icons.location_on,
+  icon: FontAwesomeIcons.meetup,
 );
 
 final festivalCategory = Category(
   categoryId: 4,
-  name: "Festival",
+  name: "Festival/Foire",
   value: 'Festival or Fair',
-  icon: Icons.location_on,
+  icon: Icons.festival_outlined,
 );
 
 final dinerCategory = Category(
   categoryId: 5,
   name: "Dinner/Gala",
   value: 'Dinner or Gala',
-  icon: Icons.location_on,
+  icon: Icons.dining_sharp,
 );
 
 final conventionCategory = Category(
   categoryId: 6,
   name: "Convention",
   value: 'Convention',
-  icon: Icons.location_on,
+  icon: FontAwesomeIcons.microphone,
 );
 
 final conferenceCategory = Category(
-  categoryId: 7,
-  name: "Conférence",
-  value: 'Conference',
-  icon: Icons.location_on,
-);
+    categoryId: 7, name: "Conférence", value: 'Conference', icon: Icons.sms);
 
 final workCategory = Category(
   categoryId: 2,
-  name: "Formation",
+  name: "Cours/Formation",
   value: 'Class, Training, or Workshop',
-  icon: Icons.location_on,
+  icon: FontAwesomeIcons.school,
 );
 
 final travelCategory = Category(
   categoryId: 8,
-  name: "Voyage",
+  name: "Camp/Voyage",
   value: 'Camp, Trip or Retreat',
-  icon: Icons.location_on,
+  icon: FontAwesomeIcons.plane,
 );
 
 final meetingCategory = Category(
   categoryId: 9,
   name: "Meeting/Réseautage",
   value: "Meeting/Networking",
-  icon: Icons.golf_course,
+  icon: Icons.meeting_room,
 );
 
 final chillCategory = Category(
   categoryId: 11,
-  name: "Rassemblement social/Chill",
+  name: "Social/Chill",
   value: 'Party/Social Gathering',
-  icon: Icons.cake,
+  icon: Icons.celebration,
 );
 
 final gameCategory = Category(
@@ -105,7 +102,7 @@ final otherCategory = Category(
   categoryId: 13,
   name: "Autre",
   value: 'Other',
-  icon: Icons.cake,
+  icon: FontAwesomeIcons.search,
 );
 
 final categories = [
