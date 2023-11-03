@@ -672,7 +672,10 @@ class _DetailPageState extends State<DetailPage> {
                             child: MaterialButton(
                               child: Text(
                                 widget.currentIndex == 0
-                                    ? 'Acheter le Pass'
+                                    ? DateTime.now().isBefore(
+                                            eventData['eventDateTime'].toDate())
+                                        ? 'Evènement Passé'
+                                        : 'Acheter le Pass'
                                     : 'Afficher mon Pass',
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(

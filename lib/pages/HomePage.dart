@@ -566,12 +566,18 @@ class _HomePageState extends State<HomePage>
                                   ? FirebaseFirestore.instance
                                       .collection('events')
                                       .where('eventLive', isEqualTo: true)
+                                      .where('eventDateTime',
+                                          isGreaterThan: DateTime
+                                              .now()) //Cete condition pour juste les évènements futur
                                       .snapshots()
                                   : FirebaseFirestore.instance
                                       .collection('events')
                                       .where('eventLive', isEqualTo: true)
                                       .where('eventCategory',
                                           isEqualTo: selectedCat)
+                                      .where('eventDateTime',
+                                          isGreaterThan: DateTime
+                                              .now()) //Cete condition pour juste les évènements futur
                                       .snapshots(),
                               builder: (BuildContext context, snapshot) {
                                 if (snapshot.connectionState ==
@@ -710,7 +716,7 @@ class _HomePageState extends State<HomePage>
                                                                 fontSize: 20)),
                                                       ),
                                                       subTitle: Text(
-                                                        'Catégorie: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('dd-MM-yyyy AT hh:mm a').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
+                                                        'Catégorie: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('EEEE-dd-MM-yyyy à hh:mm').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
                                                         style: const TextStyle(
                                                             fontSize: 16,
                                                             fontWeight:
@@ -907,7 +913,7 @@ class _HomePageState extends State<HomePage>
                                   child: Align(
                                     alignment: Alignment.centerRight,
                                     child: Text(
-                                      "Evenements en ligne",
+                                      "Evenements en ligne \n A venir",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 16,
@@ -987,12 +993,18 @@ class _HomePageState extends State<HomePage>
                                       ? FirebaseFirestore.instance
                                           .collection('OnlineEvents')
                                           .where('eventLive', isEqualTo: true)
+                                          .where('eventDateTime',
+                                              isGreaterThan: DateTime
+                                                  .now()) //Cete condition pour juste les évènements futur
                                           .snapshots()
                                       : FirebaseFirestore.instance
                                           .collection('OnlineEvents')
                                           .where('eventLive', isEqualTo: true)
                                           .where('eventCategory',
                                               isEqualTo: selectedCat)
+                                          .where('eventDateTime',
+                                              isGreaterThan: DateTime
+                                                  .now()) //Cete condition pour juste les évènements futur
                                           .snapshots(),
                                   builder: (BuildContext context1, snapshot) {
                                     if (snapshot.connectionState ==
@@ -1140,7 +1152,7 @@ class _HomePageState extends State<HomePage>
                                                                         20)),
                                                           ),
                                                           subTitle: Text(
-                                                            'Catégorie: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('dd-MM-yyyy AT hh:mm a').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
+                                                            'Catégorie: ${snapshot.data?.docs[index]['eventCategory']} \n ${DateFormat('EEEE-dd-MM-yyyy à hh:mm ').format(snapshot.data?.docs[index]['eventDateTime'].toDate())}',
                                                             style: const TextStyle(
                                                                 fontSize: 16,
                                                                 fontWeight:
