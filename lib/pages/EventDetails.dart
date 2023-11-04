@@ -611,6 +611,7 @@ class _DetailPageState extends State<DetailPage> {
                                 !eventData['isOnline']
                                     ? Text(
                                         '${eventData['eventAddress']}',
+                                        softWrap: true,
                                         style: const TextStyle(
                                           fontSize: 15,
                                         ),
@@ -672,7 +673,7 @@ class _DetailPageState extends State<DetailPage> {
                             child: MaterialButton(
                               child: Text(
                                 widget.currentIndex == 0
-                                    ? DateTime.now().isBefore(
+                                    ? DateTime.now().isAfter(
                                             eventData['eventDateTime'].toDate())
                                         ? 'Evènement Passé'
                                         : 'Acheter le Pass'
@@ -685,7 +686,13 @@ class _DetailPageState extends State<DetailPage> {
                               ),
                               onPressed: () {
                                 if (widget.currentIndex == 0) {
-                                  nextPage(context, height);
+                                  if (DateTime.now().isAfter(
+                                      eventData['eventDateTime'].toDate())) {
+                                    Fluttertoast.showToast(
+                                        msg: "Cet évènement est déjà passé");
+                                  } else {
+                                    nextPage(context, height);
+                                  }
                                 } else {
                                   showPass();
                                 }

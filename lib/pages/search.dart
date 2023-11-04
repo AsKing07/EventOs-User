@@ -58,7 +58,7 @@ class _SearchPageState extends State<SearchPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Rechercher',
+                        'Recherche',
                         style: GoogleFonts.lora(
                             fontSize: 35,
                             fontWeight: FontWeight.w800,
@@ -78,7 +78,7 @@ class _SearchPageState extends State<SearchPage> {
                       items: [
                         DropdownMenuItem(
                             value: 'Offline Events',
-                            child: const Text('En Présentiel'),
+                            child: const Text('Présentiel'),
                             onTap: () {
                               setState(() {
                                 isOnline = false;
