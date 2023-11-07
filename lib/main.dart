@@ -58,10 +58,10 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: const HomePage(),
       routes: {
-        'login': (context) => AskLogin(),
-        'homepage': (context) => HomePage()
+        'login': (context) => const AskLogin(),
+        'homepage': (context) => const HomePage()
       },
       debugShowCheckedModeBanner: false,
     );
@@ -79,10 +79,10 @@ class MyApp1 extends StatelessWidget {
         brightness: Brightness.light,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AskLogin(),
+      home: const AskLogin(),
       routes: {
-        'login': (context) => AskLogin(),
-        'homepage': (context) => HomePage()
+        'login': (context) => const AskLogin(),
+        'homepage': (context) => const HomePage()
       },
       debugShowCheckedModeBanner: false,
     );
@@ -102,8 +102,8 @@ class MyApp2 extends StatelessWidget {
       ),
       home: NotConnectedScreen(),
       routes: {
-        'login': (context) => AskLogin(),
-        'homepage': (context) => HomePage()
+        'login': (context) => const AskLogin(),
+        'homepage': (context) => const HomePage()
       },
       debugShowCheckedModeBanner: false,
     );
@@ -137,7 +137,8 @@ class NotConnectedScreen extends StatelessWidget {
             bottom: 150,
             left: 30,
             child: Text(
-              'S\'il vous plaît, vérifiez votre connexion internet \net réessayer.',
+              'Vérifiez votre connexion internet et réessayer.',
+              softWrap: true,
               style: TextStyle(
                 color: Colors.black38,
                 fontSize: 16,
@@ -165,7 +166,7 @@ class NotConnectedScreen extends StatelessWidget {
                   child: Center(
                       child: Text(
                     'Réessayer'.toUpperCase(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.w600,

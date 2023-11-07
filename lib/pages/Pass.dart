@@ -29,7 +29,7 @@ class Pass extends StatefulWidget {
   void sendMail() async {
     late String? userToken;
     final FirebaseAuth auth = FirebaseAuth.instance;
-    final User? user = await auth.currentUser;
+    final User? user = auth.currentUser;
     if (user != null) {
       userToken = await user.getIdToken();
       print('Token de l\'utilisateur : $userToken');

@@ -502,7 +502,7 @@ class _BuyTicketState extends State<BuyTicket> {
                           child: Padding(
                             padding:
                                 const EdgeInsets.only(left: 15, bottom: 12),
-                            child: Text('Combien de tickets?',
+                            child: Text('Nombre de personnes?',
                                 style: GoogleFonts.cabin(
                                   fontWeight: FontWeight.w800,
                                   fontSize: 25,

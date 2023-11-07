@@ -28,6 +28,7 @@ class GetPass {
     // User user = User.fromDocument(userDoc);
     await Add2Calendar.addEvent2Cal(event);
 
+//
     if (!post['isPaid']) {
       String passCode = randomAlphaNumeric(8);
       FirebaseFirestore.instance
@@ -35,6 +36,8 @@ class GetPass {
           .doc(uid)
           .collection('eventJoined')
           .doc(post['eventCode'])
+          .collection("pass")
+          .doc(passCode)
           .set({
         'eventCode': post['eventCode'],
         'passCode': passCode,
@@ -43,6 +46,15 @@ class GetPass {
         'dateTime': DateTime.now(),
       });
       fcm.subscribeToTopic(post['eventCode']);
+
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .collection('eventJoined')
+          .doc(post['eventCode'])
+          .set({
+        'eventCode': post['eventCode'],
+      });
 
       if (!post['isOnline']) {
         FirebaseFirestore.instance
@@ -93,11 +105,14 @@ class GetPass {
       return passCode;
     } else if (post['isPaid'] && post['partner'] != null) {
       String passCode = randomAlphaNumeric(8);
+      //
       FirebaseFirestore.instance
           .collection('users')
           .doc(uid)
           .collection('eventJoined')
           .doc(post['eventCode'])
+          .collection("pass")
+          .doc(passCode)
           .set({
         'eventCode': post['eventCode'],
         'passCode': passCode,
@@ -105,6 +120,15 @@ class GetPass {
         'ticketCount': ticketCount,
         'dateTime': DateTime.now(),
       });
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .collection('eventJoined')
+          .doc(post['eventCode'])
+          .set({
+        'eventCode': post['eventCode'],
+      });
+
       FirebaseFirestore.instance.collection('payments').doc(transactionId).set({
         'eventCode': post['eventCode'],
         'passCode': passCode,
@@ -122,9 +146,8 @@ class GetPass {
           .doc(post['partner'])
           .update({
         'amount_to_be_paid_total':
-            FieldValue.increment(post['ticketPrice'] * ticketCount * 2 / 100),
-        'amount_total':
-            FieldValue.increment(post['ticketPrice'] * ticketCount * 2 / 100),
+            FieldValue.increment(post['ticketPrice'] * ticketCount * 98 / 100),
+        'amount_total': FieldValue.increment(post['ticketPrice'] * ticketCount),
       });
 
       FirebaseFirestore.instance
@@ -134,9 +157,9 @@ class GetPass {
           .doc(post['eventCode'])
           .update({
         'amount_to_be_paid':
-            FieldValue.increment(post['ticketPrice'] * ticketCount * 2 / 100),
+            FieldValue.increment(post['ticketPrice'] * ticketCount * 98 / 100),
         'amount_earned':
-            FieldValue.increment(post['ticketPrice'] * ticketCount * 2 / 100),
+            FieldValue.increment(post['ticketPrice'] * ticketCount),
       });
 
       if (!post['isOnline']) {
@@ -198,11 +221,14 @@ class GetPass {
       return passCode;
     } else if (post['isPaid'] && post['partner'] == null) {
       String passCode = randomAlphaNumeric(8);
+      //
       FirebaseFirestore.instance
           .collection('users')
           .doc(uid)
           .collection('eventJoined')
           .doc(post['eventCode'])
+          .collection("pass")
+          .doc(passCode)
           .set({
         'eventCode': post['eventCode'],
         'passCode': passCode,
@@ -211,6 +237,16 @@ class GetPass {
         'dateTime': DateTime.now(),
         'ticketPrice': post['ticketPrice'],
       });
+
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .collection('eventJoined')
+          .doc(post['eventCode'])
+          .set({
+        'eventCode': post['eventCode'],
+      });
+
       FirebaseFirestore.instance.collection('payments').doc(transactionId).set({
         'eventCode': post['eventCode'],
         'passCode': passCode,
