@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_project/Methods/getUserId.dart';
 // import 'package:flutter_project/Models/user.dart';
 import 'package:flutter_project/services/notification.dart';
@@ -9,13 +10,17 @@ import 'package:random_string/random_string.dart';
 
 class GetPass {
   Future<String> bookPass(
-      DocumentSnapshot post, int ticketCount, String transactionId) async {
+    DocumentSnapshot post,
+    int ticketCount,
+    String transactionId,
+    BuildContext context,
+  ) async {
     final Event event = Event(
       title: post['eventName'],
       description: post['eventDescription'],
       location: 'Event location',
       startDate: post['eventDateTime'].toDate(),
-      endDate: post['eventDateTime'].toDate().add(Duration(hours: 3)),
+      endDate: post['eventDateTime'].toDate().add(const Duration(hours: 3)),
       allDay: true,
     );
 
@@ -23,10 +28,33 @@ class GetPass {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final User? user = await auth.currentUser;
 
-    // final userDoc =
-    //     await FirebaseFirestore.instance.collection('users').doc(uid).get();
-    // User user = User.fromDocument(userDoc);
-    await Add2Calendar.addEvent2Cal(event);
+    // ignore: use_build_context_synchronously
+    bool permissionGranted = await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Permission'),
+        content:
+            const Text('Voulez-vous ajouter cet événement à votre agenda ?'),
+        actions: [
+          ElevatedButton(
+            child: const Text('Non'),
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+          ),
+          ElevatedButton(
+            child: const Text('Oui'),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+          ),
+        ],
+      ),
+    );
+
+    if (permissionGranted) {
+      await Add2Calendar.addEvent2Cal(event);
+    }
 
 //
     if (!post['isPaid']) {

@@ -530,12 +530,6 @@ class _HomePageState extends State<HomePage>
                                           children: [
                                             for (final category in categories)
                                               GestureDetector(
-                                                  // onTap: () {
-                                                  //   setState(() {
-                                                  //     selectedCat = category.value!;
-                                                  //     print(selectedCat);
-                                                  //   });
-                                                  // },
                                                   child: CategoryWidget(
                                                 category: category,
                                                 isSelected: category.value ==
@@ -688,18 +682,7 @@ class _HomePageState extends State<HomePage>
                                                             progressBarColor:
                                                                 GFColors
                                                                     .SUCCESS,
-                                                          )
-                                                              //     CircularProgressIndicator(
-                                                              //   value: loadingProgress
-                                                              //               .expectedTotalBytes !=
-                                                              //           null
-                                                              //       ? loadingProgress
-                                                              //               .cumulativeBytesLoaded /
-                                                              //           loadingProgress
-                                                              //               .expectedTotalBytes!
-                                                              //       : null,
-                                                              // ),
-                                                              );
+                                                          ));
                                                         }
                                                       },
                                                     ),

@@ -86,7 +86,7 @@ dependencies:
   google_maps_flutter: ^2.5.0
   flutter_svg: ^2.0.7
   font_awesome_flutter: ^9.0.0
-  kkiapay_flutter_sdk:
+  kkiapay_flutter_sdk: ^1.2.6
   mailer: ^6.0.1
   path_provider: ^2.1.1
   flutter_dotenv: ^5.0.2
@@ -96,7 +96,8 @@ dependencies:
   ticket_widget: ^1.0.2
   # widgets_to_image: any
   flutter_native_splash: ^2.3.5
-
+  pdf: ^3.10.6
+  htmltopdfwidgets: ^0.0.9+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

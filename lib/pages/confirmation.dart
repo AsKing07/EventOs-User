@@ -336,6 +336,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/Methods/getUserId.dart';
+import 'package:flutter_project/Methods/sendMail.dart';
 import 'package:flutter_project/config/config.dart';
 import 'package:flutter_project/pages/Pass.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -344,9 +345,9 @@ import 'package:flutter_fluid_slider_nnbd/flutter_fluid_slider_nnbd.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_project/Methods/getPass.dart';
 import 'package:flutter_project/pages/SuccessBooking.dart';
-import 'package:kkiapay_flutter_sdk/kkiapay/view/widget_builder_view.dart';
+import 'package:kkiapay_flutter_sdk/src/widget_builder_view.dart';
+import 'package:kkiapay_flutter_sdk/utils/config.dart';
 import 'package:flutter_project/pages/AbandonBooking.dart';
-import 'package:kkiapay_flutter_sdk/utils/kkiapayConf.sample.dart';
 
 class BuyTicket extends StatefulWidget {
   DocumentSnapshot post;
@@ -468,7 +469,7 @@ class _BuyTicketState extends State<BuyTicket> {
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15, bottom: 12),
-                      child: Text('Addresse',
+                      child: Text('Adresse',
                           style: GoogleFonts.cabin(
                             fontWeight: FontWeight.w800,
                             fontSize: 25,
@@ -563,8 +564,12 @@ class _BuyTicketState extends State<BuyTicket> {
                         //Generer un id de transaction aléatoire utilisant la fonction random
                         int transactionId = Random().nextInt(5);
                         await GetPass()
-                            .bookPass(widget.post, _ticketCount,
-                                transactionId.toString())
+                            .bookPass(
+                          widget.post,
+                          _ticketCount,
+                          transactionId.toString(),
+                          context,
+                        )
                             .then((value) {
                           Navigator.pushAndRemoveUntil(
                             context,
@@ -622,73 +627,6 @@ class _BuyTicketState extends State<BuyTicket> {
 
     final kkiapay = KKiaPay(
         callback: sucessCallback,
-        // callback: (response, context) async {
-        //   String paymentId = response['data']['transactionId'];
-        //   String status = response['name'];
-        //   String data = response['data']['transactionId'];
-        //   Navigator.pop(context);
-
-        //   switch (status) {
-        //     case 'PAYMENT_CANCELLED':
-        //       String abandonText = "Payement annulé: $paymentId \n $data";
-
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute(
-        //             builder: (context) => AbandonBooking(
-        //                 paymentId: paymentId, abandonText: abandonText)),
-        //       );
-        //       break;
-        //     case 'CLOSE_WIDGET':
-        //       String abandonText = "Payement annulé: $paymentId \n $data";
-
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute(
-        //             builder: (context) => AbandonBooking(
-        //                 paymentId: paymentId, abandonText: abandonText)),
-        //       );
-        //       break;
-
-        //     case 'PAYMENT_SUCCESS':
-        //       await GetPass()
-        //           .bookPass(widget.post, _ticketCount, response)
-        //           .then((value) {
-        //         Navigator.pushAndRemoveUntil(
-        //           context,
-        //           MaterialPageRoute(builder: (context) {
-        //             return Success(
-        //               passCode: value,
-        //               eventCode: widget.post['eventCode'] ?? '',
-        //               payment_id: paymentId,
-        //               isOnline: widget.post['isOnline'] ?? false,
-        //             );
-        //           }),
-        //           ModalRoute.withName("/homepage"),
-        //         );
-        //       });
-        //       break;
-        //     case 'PAYMENT_FAILED':
-        //       String abandonText = "Echec du payement: $paymentId \n $data";
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute(
-        //             builder: (context) => AbandonBooking(
-        //                 paymentId: paymentId, abandonText: abandonText)),
-        //       );
-        //       break;
-
-        //     default:
-        //       String abandonText = "Echec du payement: $paymentId \n $data";
-        //       Navigator.push(
-        //         context,
-        //         MaterialPageRoute(
-        //             builder: (context) => AbandonBooking(
-        //                 paymentId: paymentId, abandonText: abandonText)),
-        //       );
-        //       break;
-        //   }
-        // },
         amount: amount.toInt(),
         apikey: '74707e40729f11eea29bd729ceb25af7',
         sandbox: true,
@@ -756,11 +694,14 @@ class _BuyTicketState extends State<BuyTicket> {
           String paymentId = response['transactionId'];
 
           await GetPass()
-              .bookPass(widget.post, _ticketCount, paymentId)
-              .then((value) {
-            Pass pass = Pass(value, widget.post['eventCode'] ?? "",
-                widget.post['isOnline'] ?? false);
-            pass.sendMail();
+              .bookPass(widget.post, _ticketCount, paymentId, context)
+              .then((value) async {
+            // Pass pass = Pass(value, widget.post['eventCode'] ?? "",
+            //     widget.post['isOnline'] ?? false);
+            // pass.sendMail();
+
+            Mail().sendMail(value, widget.post['isOnline'] ?? false,
+                widget.post['eventCode'] ?? "");
             Navigator.push(
               context,
               MaterialPageRoute(

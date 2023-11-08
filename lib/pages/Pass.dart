@@ -1,11 +1,6 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -14,102 +9,12 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../Widgets/clipper.dart';
 import '../config/config.dart';
 import 'package:social_media_buttons/social_media_buttons.dart';
-import 'package:mailer/mailer.dart';
-import 'package:mailer/smtp_server.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class Pass extends StatefulWidget {
   final String passCode;
   final bool isOnline;
   final String eventCode;
   const Pass(this.passCode, this.eventCode, this.isOnline, {super.key});
-
-  void sendMail() async {
-    late String? userToken;
-    final FirebaseAuth auth = FirebaseAuth.instance;
-    final User? user = auth.currentUser;
-    if (user != null) {
-      userToken = await user.getIdToken();
-      print('Token de l\'utilisateur : $userToken');
-    } else {
-      print('L\'utilisateur n\'est pas connecté.');
-    }
-
-    final email = user?.email;
-    final tempDir = await getTemporaryDirectory();
-    final file = File('${tempDir.path}/qr_code.png');
-    ByteData? qrBytes = await QrPainter(
-      data: passCode,
-      gapless: true,
-      version: QrVersions.auto,
-      color: Color.fromRGBO(0, 118, 191, 1),
-      emptyColor: Colors.white,
-    ).toImageData(878);
-
-    final buffer = qrBytes!.buffer.asUint8List();
-    await file.writeAsBytes(buffer);
-
-    if (email != null) {
-      final server = gmail('charbelsnn@gmail.com', 'cybnxrgfsydiyrtw');
-
-      final message = Message()
-        ..from = Address('charbelsnn@gmail.com', 'L\'Equipe EventOs')
-        ..recipients.add(email)
-        ..subject = 'Votre Pass'
-        ..html =
-            ' <p>Veuillez trouver ci-joint votre QR Code pour accéder à l\'événement. Votre QR Code reste cependant disponible via l\'application </p> <p>Ce code QR Code sera scanné à votre présentation à l\'évènement </p> <p>Une fois scanné, il n\'est plus utilisable. Veuillez donc bien le conservé </p> <img src="cid:qr_code_image"> '
-        ..attachments.add(
-          FileAttachment(File(file.path))
-            ..location = Location.inline
-            ..cid = '<qr_code_image>',
-        );
-
-      try {
-        final sendReport = await send(message, server);
-        print('Message envoyé: ' + sendReport.toString());
-        if (userToken != null) {
-          sendNotificationToUser(userToken);
-        }
-      } on MailerException catch (e) {
-        print('Message non envoyé.');
-        for (var p in e.problems) {
-          print('Problemes: ${p.code}: ${p.msg}');
-        }
-      }
-    }
-  }
-
-  void sendNotificationToUser(String userToken) async {
-    const String fcmUrl = 'https://fcm.googleapis.com/fcm/send';
-
-    final Map<String, dynamic> notification = {
-      'to': userToken, // Token FCM de l'utilisateur
-      'notification': {
-        'title': 'Nouveau message',
-        'body': 'Vous avez reçu un nouvel e-mail',
-      },
-    };
-
-    final headers = {
-      'Content-Type': 'application/json',
-      'Authorization':
-          'key=AAAAxVId5K8:APA91bERzf3CpSnGNBDYhCZghvy2-q7LHMEBA33xime_t9rr8fikxGqsRCZwaRjb1uTVepo3vaWXy6kMnJGpAgHTvlOyYL5-kn7AlbpK5AVzdC9IszjA9QgPeXt7XyziUQWogiX3_Fx1',
-    };
-
-    final response = await http.post(
-      Uri.parse(fcmUrl),
-      headers: headers,
-      body: jsonEncode(notification),
-    );
-
-    if (response.statusCode == 200) {
-      print('Notification envoyée avec succès.');
-    } else {
-      print('Échec de l\'envoi de la notification : ${response.reasonPhrase}');
-    }
-  }
 
   @override
   _PassState createState() => _PassState();
@@ -319,7 +224,7 @@ class _PassState extends State<Pass> {
                             ? Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Text(
-                                  "Permet ${passDetails['ticketCount']} entrée(s)",
+                                  "Permet ${passDetails['ticketCount']} personne(s)",
                                   style: const TextStyle(
                                       color: Colors.red,
                                       fontSize: 25,
