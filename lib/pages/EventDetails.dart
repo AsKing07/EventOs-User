@@ -28,22 +28,6 @@ class _DetailPageState extends State<DetailPage> {
   late String writtenCode, passCode;
   int index = 0;
 
-  // void showPass() async {
-  //   String passCode;
-  //   final querySnapshot = await FirebaseFirestore.instance
-  //       .collection('users')
-  //       .doc(widget.uid)
-  //       .collection('eventJoined')
-  //       .where('eventCode', isEqualTo: widget.post['eventCode'])
-  //       .get();
-  //   passCode = querySnapshot.docs.elementAt(0)['passCode'];
-
-  //   // ignore: use_build_context_synchronously
-  //   Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //     return Pass(passCode, widget.post['eventCode'], widget.post['isOnline']);
-  //   }));
-  // }
-
   void showPass() async {
     // Passer à la page PassListPage avec les informations nécessaires
     Navigator.push(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:flutter_project/config/config.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_project/pages/NotConnectedScreen.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'pages/HomePage.dart';
 import 'pages/loginui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,28 +13,43 @@ import 'package:connectivity_checker/connectivity_checker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  );
+  ); //Initialiser Firebase
+
   await FirebaseAppCheck.instance.activate(
     webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
     androidProvider: AndroidProvider.debug,
     appleProvider: AppleProvider.appAttest,
-  );
-  AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+  ); //Contribue à l'initialisation de Firebase AppCheck
+
+  // AndroidGoogleMapsFlutter.useAndroidViewSurface = true;
+
+  //On vérifie dans SharedPreference si l'utilisateur est déjà connecté.
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool? login = prefs.getBool('login');
-  await FlutterConfig.loadEnvVariables();
 
-  final connected = await checkInternetConnection();
+  await FlutterConfig
+      .loadEnvVariables(); //Charge les variables d'environnement si il y en a
+
+  final connected = await checkInternetConnection(); //check internet connection
+
   if (connected) {
-    runApp(login == null
-        ? MyApp1()
-        : login
-            ? MyApp()
-            : MyApp1());
+    //Si il y a acces à internet
+    runApp(
+      // Si l'utilisateur est connecté à l'application, affichez l'application MyApp sinon MyApp1
+      login == null
+          ? MyApp1()
+          : login
+              ? MyApp()
+              : MyApp1(),
+    );
   } else {
-    runApp(MyApp2());
+    runApp(
+      // Si il n'y a pas de connexion Internet, affichez l'application MyApp2
+      MyApp2(),
+    );
   }
 }
 
@@ -47,7 +63,9 @@ Future<bool> checkInternetConnection() async {
   }
 }
 
+//MyApp redirige l'user vers la page d'accueil;
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -61,14 +79,16 @@ class MyApp extends StatelessWidget {
       home: const HomePage(),
       routes: {
         'login': (context) => const AskLogin(),
-        'homepage': (context) => const HomePage()
+        'homepage': (context) => const HomePage(),
       },
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
+//MyApp1 vers la page de connection
 class MyApp1 extends StatelessWidget {
+  const MyApp1({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -82,14 +102,16 @@ class MyApp1 extends StatelessWidget {
       home: const AskLogin(),
       routes: {
         'login': (context) => const AskLogin(),
-        'homepage': (context) => const HomePage()
+        'homepage': (context) => const HomePage(),
       },
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
+//MyApp2 vers la page d'erreur d'acces à internet
 class MyApp2 extends StatelessWidget {
+  const MyApp2({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -103,79 +125,31 @@ class MyApp2 extends StatelessWidget {
       home: NotConnectedScreen(),
       routes: {
         'login': (context) => const AskLogin(),
-        'homepage': (context) => const HomePage()
+        'homepage': (context) => const HomePage(),
       },
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class NotConnectedScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            'assets/Connection_Lost.png',
-            fit: BoxFit.cover,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-          ),
-          const Positioned(
-            bottom: 200,
-            left: 30,
-            child: Text('Pas de Connexion',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 25,
-                  letterSpacing: 1,
-                  fontWeight: FontWeight.w500,
-                )),
-          ),
-          const Positioned(
-            bottom: 150,
-            left: 30,
-            child: Text(
-              'Vérifiez votre connexion internet et réessayer.',
-              softWrap: true,
-              style: TextStyle(
-                color: Colors.black38,
-                fontSize: 16,
-                letterSpacing: 1,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.start,
-            ),
-          ),
-          Positioned(
-              bottom: 50,
-              left: 40,
-              right: 40,
-              child: InkWell(
-                onTap: () {
-                  main();
-                },
-                child: Container(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width / 2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.blue[800]!,
-                  ),
-                  child: Center(
-                      child: Text(
-                    'Réessayer'.toUpperCase(),
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )),
-                ),
-              )),
-        ],
-      ),
-    );
-  }
-}
+
+
+/*
+Dans ce code : 
+ 
+1- La fonction  main  est la fonction de démarrage de l'application. 
+  Elle initialise Firebase, Firebase App Check, et les dépendances nécessaires. 
+  Elle vérifie la connexion Internet, puis lance l'application en fonction de 
+  l'état de connexion et de la connexion de l'utilisateur. 
+ 
+2- La fonction  checkInternetConnection  vérifie si l'appareil est connecté à 
+  Internet en utilisant le package  connectivity_checker . 
+  Elle renvoie  true  si l'appareil est connecté, sinon elle renvoie  false . 
+ 
+3- Les classes  MyApp ,  MyApp1 , et  MyApp2  sont des widgets racine de l'application 
+  qui définissent le thème, la configuration, et les routes de navigation en fonction 
+  de l'état de connexion et de la connexion de l'utilisateur. 
+ 
+4- Les widgets  HomePage ,  AskLogin , et  NotConnectedScreen  sont les écrans d'accueil, 
+  de connexion, et d'absence de connexion, respectivement. 
+*/
