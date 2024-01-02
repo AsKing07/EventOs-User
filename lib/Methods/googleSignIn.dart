@@ -27,6 +27,7 @@ Future<String> signInWithGoogle(BuildContext context) async {
   final User? user = userCredential.user;
   assert(!user!.isAnonymous);
   assert(await user!.getIdToken() != null);
+
   final User? currentUser = await _auth.currentUser;
   assert(user!.uid == currentUser!.uid);
   assert(user!.email != null);
@@ -60,5 +61,5 @@ Future<String> signInWithGoogle(BuildContext context) async {
 void signOut() async {
   await googleSignIn.signOut();
   await FirebaseAuth.instance.signOut();
-  print("User Sign Out");
+  // print("User Sign Out");
 }

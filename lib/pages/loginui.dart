@@ -149,3 +149,20 @@ class _AskLoginState extends State<AskLogin> {
     );
   }
 }
+
+
+
+// Ce code est la classe qui représente la page d'authentification. Voici une explication détaillée du code :
+
+// - Les imports importent les packages nécessaires pour le fonctionnement de la page.
+// - La classe  `AskLogin`  est un widget StatefulWidget qui représente la page d'authentification.
+// - Le widget  `AskLogin`  a un état représenté par la classe  `_AskLoginState` .
+// - Le  `_AskLoginState`  a une clé  `GlobalKey<ScaffoldState>`  utilisée pour accéder au Scaffold parent.
+// - La variable  `checked`  est un booléen qui représente si l'utilisateur a accepté les politiques de confidentialité.
+// - Le widget  `build`  est la méthode qui construit l'interface utilisateur de la page.
+// - La page est organisée en colonnes et utilise des widgets tels que SizedBox, Expanded, Image, Center, RichText, SvgPicture, SignInButton et CheckboxListTile pour créer l'interface utilisateur.
+// - Lorsque l'utilisateur appuie sur le bouton "Se connecter avec Google" et que la case à cocher est cochée, la méthode  `signInWithGoogle`  est appelée.
+// - Si la case à cocher n'est pas cochée, un message d'erreur est affiché à l'aide de Fluttertoast.
+// - Lorsque l'utilisateur coche ou décoche la case à cocher, la variable  `checked`  est mise à jour en utilisant la méthode  `setState` .
+// - Le bas de la page utilise le widget ClipPath pour créer une forme d'onde en bas de la page.
+

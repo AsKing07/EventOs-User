@@ -126,7 +126,7 @@ class _SearchPageState extends State<SearchPage> {
                 _debouncer.run(() {
                   onSearch(val);
                 });
-                print(searchController.text);
+                // print(searchController.text);
               },
             ),
           ),
@@ -136,7 +136,7 @@ class _SearchPageState extends State<SearchPage> {
                 // ignore: unnecessary_null_comparison
                 if (searchController.text == null ||
                     searchController.text == '') {
-                  print('yo');
+                  // print('yo');
                   return Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
@@ -155,7 +155,7 @@ class _SearchPageState extends State<SearchPage> {
                   return SpinKitChasingDots(color: AppColors.secondary);
                 else {
                   if (snapshot.data.docs.length == 0) {
-                    print(2);
+                    // print(2);
                     return const Text('Pas de résultats',
                         style: TextStyle(
                           color: Colors.black,
@@ -165,7 +165,7 @@ class _SearchPageState extends State<SearchPage> {
                       child: ListView.builder(
                           itemCount: snapshot.data.docs.length,
                           itemBuilder: (context, index) {
-                            print(1);
+                            // print(1);
                             return eventCard(snapshot.data.docs[index], height,
                                 width, 0, context);
                           }),

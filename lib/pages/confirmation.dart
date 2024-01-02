@@ -626,19 +626,21 @@ class _BuyTicketState extends State<BuyTicket> {
     String userName = currentUser!.displayName!;
 
     final kkiapay = KKiaPay(
-        callback: sucessCallback,
-        amount: amount.toInt(),
-        apikey: '74707e40729f11eea29bd729ceb25af7',
-        sandbox: true,
-        email: currentUser.email,
-        reason:
-            'Achat de pass pour l\'évènement ${widget.post['eventName']}   \n Code:  ${widget.post['eventCode']} \n Organisateur: ${widget.post['hostName']} .',
-        data: 'Achat de pass pour l\'évènement ${widget.post['eventName']}   \n Code:  ${widget.post['eventCode']} \n Organisateur: ${widget.post['hostName']} .',
-        phone: currentUser.phoneNumber,
-        name: userName,
-        theme: '#2ba359',
-        countries: const ["BJ"],
-        paymentMethods: const ["momo"]);
+      callback: sucessCallback,
+      amount: amount.toInt(),
+      apikey: '74707e40729f11eea29bd729ceb25af7',
+      sandbox: true,
+      email: currentUser.email,
+      reason:
+          'Achat de pass pour l\'évènement ${widget.post['eventName']}   \n Code:  ${widget.post['eventCode']} \n Organisateur: ${widget.post['hostName']} .',
+      data:
+          'Achat de pass pour l\'évènement ${widget.post['eventName']}   \n Code:  ${widget.post['eventCode']} \n Organisateur: ${widget.post['hostName']} .',
+      phone: currentUser.phoneNumber,
+      name: userName,
+      theme: '#2ba359',
+      countries: const ["BJ"],
+      // paymentMethods: const ["momo"]
+    );
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => kkiapay),

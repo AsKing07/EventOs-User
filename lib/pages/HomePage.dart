@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage>
           ),
         ),
         body: _selectedIndex == 0
-            ? //Si =0, alors => Page Evenements en ligne
+            ? //Si =0, alors => Page Evenements en présentiel
             CustomScrollView(
                 slivers: <Widget>[
                   // Les slivers pour l'affichage de la page
